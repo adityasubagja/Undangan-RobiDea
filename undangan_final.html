@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"> <!-- Mengatur karakter encoding agar mendukung karakter UTF-8 -->
+  <title>Undangan Pernikahan | Robi Handika & Dea Jupita</title> <!-- Judul tab browser -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Agar responsive di perangkat mobile -->
+  <link rel="stylesheet" href="style.css"> <!-- Menghubungkan file CSS eksternal -->
+
+  <!-- Lightbox2 CSS untuk galeri gambar -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+
+  
+  <!--Tambahkan Google Font--> 
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Scroll akan halus saat klik link navigasi */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Navigasi tetap di atas saat scroll */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px 20px;
+      z-index: 1000;
+      text-align: center;
+    }
+
+    /* Gaya teks link navigasi */
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* Tombol musik */
+    .btn-musik {
+      display: block;
+      margin: 30px auto;
+      background-color: #f9c4d2;
+      color: #333;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Efek saat hover di tombol musik */
+    .btn-musik:hover {
+      background-color: #f7aebe;
+      transform: scale(1.05);
+    }
+
+    /* Container popup pembuka */
+    .popup-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(5px);
+    }
+
+    /* Konten dalam popup */
+    .popup-content {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      max-width: 90%;
+      width: 400px;
+    }
+
+    /* Foto di dalam popup */
+    .popup-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    /* Tombol buka undangan */
+    .popup-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f78da7;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Gambar awan sebagai dekorasi -->
+  <img src="assets/awan.png" alt="Awan" class="cloud-img">
+
+  <!-- Popup pembuka undangan -->
+  <div id="popup" class="popup-container">
+    <div class="popup-content">
+      <img src="assets/foto.jpg" alt="Foto Mempelai" class="popup-img">
+      <h3>We Invite You To</h3>
+      <h1>
+        <span class="nama-mempelai">Robi Handika</span>
+        <span class="nama-mempelai hati">&#10084;</span>
+        <span class="nama-mempelai">Dea Jupita</span>
+      </h1>      
+      <p>Tanpa Mengurangi Rasa Hormat, Kami Mengundang Bapak/Ibu/Saudara/i untuk Hadir di Acara Kami.</p>
+      <p>Kepada</p>
+      <h2 id="namaTamu">Tamu Undangan</h2> <!-- Nama tamu akan diubah lewat JavaScript -->
+      <button onclick="bukaUndangan()" class="popup-button">✉️ Buka Undangan</button>
+    </div>
+  </div>
+
+  <!-- Navigasi -->
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#ucapan">Ucapan</a>
+    <a href="#lokasi">Lokasi</a>
+    <a href="#galeri">Galeri</a>
+  </nav>
+
+  <!-- Bagian Beranda -->
+  <section id="beranda" class="home section">
+    <div class="overlay">
+      <div class="content">
+        <h1>Robi Handika & Dea Jupita</h1>
+        <p>Dengan penuh suka cita <br> kami mengundang Anda hadir di hari bahagia kami</p>
+        <p>Rabu, 11 Juni 2025</p>
+        <p id="countdown" style="font-weight:bold; font-size: 1.2rem; margin-top: 20px;"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian Ucapan -->
+  <section id="ucapan" class="section ucapan">
+    <div class="overlay">
+      <div class="content">
+        <h2>Ucapan Terima Kasih</h2>
+        <p>
+          Terima kasih telah menjadi bagian dari perjalanan hidup kami hingga hari ini.<br><br>
+          Kini, kami akan memulai babak baru sebagai pasangan suami istri, dan kami sangat berharap kehadiran dan doa tulus dari Anda.<br><br>
+          Doa dan dukungan Anda adalah hadiah terbaik yang bisa kami terima di hari istimewa kami.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian Lokasi -->
+  <section id="lokasi" class="section lokasi">
+    <div class="overlay">
+      <div class="content">
+        <h2>Lokasi</h2>
+        <p>Kp. Areng RT.01/07, Desa Wangunsari Kec. Lembang, Kab. Bandung Barat</p>
+        <!-- Peta Google Maps -->
+        <div class="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d3280.520875677275!2d107.60878954999998!3d-6.844521000000009!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e0!4m3!3m2!1d-6.8444845!2d107.60834469999999!4m3!3m2!1d-6.844283!2d107.6083417!5e1!3m2!1sid!2sid!4v1748974956891!5m2!1sid!2sid" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bagian Galeri -->
+  <section id="galeri" class="section galeri">
+    <div class="gallery-header">
+      <h1>Momen Spesial Kami</h1>
+      <p>Kumpulan kenangan indah perjalanan cinta Robi Handika & Dea Jupita</p>
+    </div>
+    <div class="gallery-container">
+      <!-- Gambar dalam galeri. Bisa tambah gambar lebih banyak -->
+      <a href="assets/foto1.jpg" data-lightbox="galeri" data-title="Momen Spesial">
+        <img src="assets/foto1.jpg" alt="Momen Spesial">
+      </a>
+      <a href="assets/foto2.jpg" data-lightbox="galeri" data-title="Momen Spesial">
+        <img src="assets/foto2.jpg" alt="Momen Spesial">
+      </a>
+      <a href="assets/foto3.jpg" data-lightbox="galeri" data-title="Momen Spesial">
+        <img src="assets/foto3.jpg" alt="Momen Spesial">
+      </a>
+      <a href="assets/foto4.jpg" data-lightbox="galeri" data-title="Momen Spesial">
+        <img src="assets/foto4.jpg" alt="Momen Spesial">
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align: center; margin-top: 50px;">
+    <p>Terima kasih atas doa dan kehadiran Anda</p>
+  </footer>
+
+  <!-- Audio musik latar -->
+  <audio id="bgMusic" src="assets/musik.mp3" loop preload="auto" autoplay></audio>
+
+  <!-- Lightbox2 JS untuk galeri -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
+
+</body>
+</html>
